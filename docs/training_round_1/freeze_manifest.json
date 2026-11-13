@@ -1,0 +1,23 @@
+{
+  "status": "Closed experimental training round; not approved for automatic sorting",
+  "closed_date": "2026-11-13",
+  "training_date": "2026-11-12",
+  "selected_epoch": 18,
+  "completed_epochs": 20,
+  "model_path": "weights/small_portions_yolo26n.pt",
+  "weights_sha256": "0a2390613b71599830902459077ee129db3496b53814164c0f1975070a8ffce8",
+  "dataset_manifest_sha256": "c8d5d94bec197403c674b65eb08bf0fdcc61448dad4a57b5ae0536ddcad6565e",
+  "source_annotations_sha256": "812c2e3f0d336b437f276597715de2abb08bb8a641599c45f593d233ec66457b",
+  "validation_metrics": {
+    "metrics/precision(B)": 0.68059,
+    "metrics/recall(B)": 0.1582,
+    "metrics/mAP50(B)": 0.19287,
+    "metrics/mAP50-95(B)": 0.15373,
+    "val/box_loss": 1.70033,
+    "val/cls_loss": 3.00795,
+    "val/l1_loss": 0.00769,
+    "fitness": 0.15373
+  },
+  "test_evaluation": "Not repeated; previous public test already viewed",
+  "model_binary_in_git": false
+}

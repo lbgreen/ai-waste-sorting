@@ -4,6 +4,8 @@ Python prototype for a MacBook Air M3 and Logitech C920. **No Arduino/servo cont
 
 **Team handoff:** read [DEVELOPMENT_STATUS.md](DEVELOPMENT_STATUS.md) for the current implementation, training results, local-only artifacts and next steps. The GitHub repository stays public; update the handoff and push verified changes after each meaningful work session.
 
+For the next lecture: [Round 1 analysis and discussion points](docs/training_round_1/README.md).
+
 ## Start camera preview
 
 Run from this repository directory:

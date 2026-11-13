@@ -3,6 +3,10 @@
 Updated: **13 November 2026** (Europe/Rome). Start here before continuing work.
 Repository: [lbgreen/ai-waste-sorting](https://github.com/lbgreen/ai-waste-sorting), **public** by the owner's latest instruction.
 
+## Round 1 closeout
+
+The first training round is closed as of **13 November 2026**. The [lecture analysis package](docs/training_round_1/README.md) contains learning curves, per-class findings, all epoch metrics, a frozen configuration and checkpoint/data hashes. Both local checkpoint copies matched the recorded SHA-256. No additional training or deployment was performed during closeout. The selected small-portion checkpoint remains epoch 18 of 20; future experiments should be documented as round 2.
+
 ## Current state
 
 A supervised Python webcam prototype and two experimental waste-detector training runs exist. **There is no validated automatic sorting system yet.** Hardware target: MacBook Air M3 and Logitech C920. Camera capture worked, but camera index 0 was not conclusively identified as the C920; confirm the device before collecting evaluation images. No Arduino, serial output or servo control is implemented.

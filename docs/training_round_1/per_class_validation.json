@@ -1,0 +1,89 @@
+{
+  "source": "Final best-checkpoint validation table in small_portions.log; rounded source values",
+  "classes": [
+    {
+      "class_name": "plastic_bottle",
+      "images": 5,
+      "instances": 5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "map50": 0.0476,
+      "map50_95": 0.0191
+    },
+    {
+      "class_name": "glass_bottle",
+      "images": 2,
+      "instances": 3,
+      "precision": 1.0,
+      "recall": 0.0,
+      "map50": 0.0,
+      "map50_95": 0.0
+    },
+    {
+      "class_name": "metal_can",
+      "images": 1,
+      "instances": 1,
+      "precision": 0.764,
+      "recall": 1.0,
+      "map50": 0.995,
+      "map50_95": 0.895
+    },
+    {
+      "class_name": "cardboard",
+      "images": 8,
+      "instances": 10,
+      "precision": 0.274,
+      "recall": 0.1,
+      "map50": 0.177,
+      "map50_95": 0.168
+    },
+    {
+      "class_name": "paper",
+      "images": 1,
+      "instances": 1,
+      "precision": 1.0,
+      "recall": 0.0,
+      "map50": 0.0398,
+      "map50_95": 0.0318
+    },
+    {
+      "class_name": "film_wrapper",
+      "images": 26,
+      "instances": 32,
+      "precision": 0.74,
+      "recall": 0.188,
+      "map50": 0.324,
+      "map50_95": 0.2
+    },
+    {
+      "class_name": "plastic_container",
+      "images": 1,
+      "instances": 1,
+      "precision": 1.0,
+      "recall": 0.0,
+      "map50": 0.0,
+      "map50_95": 0.0
+    },
+    {
+      "class_name": "cigarette",
+      "images": 6,
+      "instances": 7,
+      "precision": 1.0,
+      "recall": 0.0,
+      "map50": 0.00537,
+      "map50_95": 0.00107
+    },
+    {
+      "class_name": "needs_review",
+      "images": 36,
+      "instances": 43,
+      "precision": 0.347,
+      "recall": 0.136,
+      "map50": 0.147,
+      "map50_95": 0.0667
+    }
+  ],
+  "absent_classes": [
+    "cup"
+  ]
+}
