@@ -1,0 +1,159 @@
+{
+  "experiment": "small_portions",
+  "completed_epochs": 20,
+  "best_csv_epoch": 18,
+  "validation_metrics": {
+    "metrics/precision(B)": 0.68059,
+    "metrics/recall(B)": 0.1582,
+    "metrics/mAP50(B)": 0.19287,
+    "metrics/mAP50-95(B)": 0.15373,
+    "val/box_loss": 1.70033,
+    "val/cls_loss": 3.00795,
+    "val/l1_loss": 0.00769,
+    "fitness": 0.15373
+  },
+  "best_csv_row": {
+    "epoch": "18",
+    "time": "271.111",
+    "train/box_loss": "1.21525",
+    "train/cls_loss": "2.064",
+    "train/l1_loss": "0.00612",
+    "metrics/precision(B)": "0.68059",
+    "metrics/recall(B)": "0.1582",
+    "metrics/mAP50(B)": "0.19287",
+    "metrics/mAP50-95(B)": "0.15373",
+    "val/box_loss": "1.70033",
+    "val/cls_loss": "3.00795",
+    "val/l1_loss": "0.00769",
+    "lr/pg0": "0.000113169",
+    "lr/pg1": "0.000113169",
+    "lr/pg2": "0.000113169"
+  },
+  "weights_sha256": "0a2390613b71599830902459077ee129db3496b53814164c0f1975070a8ffce8",
+  "selection": {
+    "settings": {
+      "max_items": 3,
+      "max_overlap": 0.15,
+      "min_box_area": 0.0
+    },
+    "images": {
+      "test": 150,
+      "val": 68,
+      "train": 434
+    },
+    "boxes": {
+      "train": {
+        "glass_bottle": 20,
+        "metal_can": 55,
+        "needs_review": 209,
+        "plastic_bottle": 50,
+        "film_wrapper": 130,
+        "paper": 20,
+        "cup": 41,
+        "plastic_container": 23,
+        "cigarette": 60,
+        "cardboard": 41
+      },
+      "val": {
+        "plastic_bottle": 5,
+        "plastic_container": 1,
+        "needs_review": 43,
+        "film_wrapper": 32,
+        "glass_bottle": 3,
+        "paper": 1,
+        "metal_can": 1,
+        "cardboard": 10,
+        "cigarette": 7
+      },
+      "test": {
+        "film_wrapper": 80,
+        "needs_review": 93,
+        "cardboard": 5,
+        "metal_can": 7,
+        "paper": 5,
+        "plastic_bottle": 17,
+        "plastic_container": 5,
+        "cup": 12,
+        "cigarette": 19,
+        "glass_bottle": 5
+      }
+    },
+    "counts_per_scene": {
+      "train": {
+        "1": 269,
+        "2": 115,
+        "3": 50
+      },
+      "val": {
+        "1": 39,
+        "2": 23,
+        "3": 6
+      },
+      "test": {
+        "1": 74,
+        "3": 22,
+        "2": 54
+      }
+    },
+    "excluded": {
+      "object_count": 252,
+      "overlap": 129
+    },
+    "class_groups": {
+      "plastic_bottle": [
+        4,
+        5
+      ],
+      "glass_bottle": [
+        6
+      ],
+      "metal_can": [
+        10,
+        12
+      ],
+      "cardboard": [
+        13,
+        14,
+        15,
+        17,
+        18,
+        19
+      ],
+      "paper": [
+        30,
+        32,
+        33,
+        34
+      ],
+      "film_wrapper": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "cup": [
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "plastic_container": [
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "cigarette": [
+        59
+      ],
+      "needs_review": []
+    },
+    "note": "Count/overlap heuristics do not prove complete annotation or absence of clutter. Source splits retained. Previously viewed public test is not a new holdout. needs_review is a recognition class, never a sorting command."
+  },
+  "deployment": "Not activated; requires C920 validation. No independent test evaluation in this experiment."
+}

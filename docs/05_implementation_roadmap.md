@@ -1,5 +1,7 @@
 # Phase 2 roadmap and executive summary
 
+Current team handoff: [DEVELOPMENT_STATUS.md](../DEVELOPMENT_STATUS.md). The text below preserves the original research plan. A webcam prototype and two experimental training runs now exist; neither trained detector is approved for automatic sorting.
+
 Prepared **2026-11-09**. This is a plan; **Phase 2 has not started**. The project directory was empty when inspected, with no existing application, Git metadata or applicable AGENTS.md discovered. Only the requested research documents and CSV are introduced.
 
 ## Executive summary
@@ -87,3 +89,7 @@ Phase 1 ends with these research deliverables. No camera application, training j
 ## Revised decision-layer acceptance criteria
 
 Implement configurable candidate/recognition/category thresholds and temporal settings; log their version. Use the [current architecture truth table](04_system_architecture.md): confirmed conflict first, usable-scene classification fallback second, confident agreement third. Verify all seven requested examples, plus paper+unknown, empty view, threshold crossings, unsupported objects and occlusion warnings. Both READY and UNSURE require stable observations, fresh final recheck and one-event latching. UNSURE remains a status, never a fourth command; outgoing vocabulary stays paper/recycling/general. Show individual confidence and name every uncertain object. No Arduino/servo code is added by this documentation change.
+
+## Prototype implementation checkpoint — 2026-11-11
+
+A first supervised prototype now exists under `waste_sorter/`; earlier “not implemented” statements describe the research-phase snapshot. See the repository README for setup and current limitations. Implemented: OpenCV preview/record capture, optional local YOLO detection adapter, configurable category policy, temporal gate and console-only events. Tests cover policy and gating. Still outstanding: trained waste weights, validated site/condition rules, calibrated confidence, robust tracking/occlusion/completeness, real webcam evaluation and runtime profiling. Camera-only mode is not a waste classifier. No Arduino interface exists.

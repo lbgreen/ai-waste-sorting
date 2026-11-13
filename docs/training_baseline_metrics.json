@@ -1,0 +1,14 @@
+{
+  "split": "test",
+  "weights": "/Users/LeoBenk/Documents/skku/Engineering Design/software/runs/waste_training/detector/weights/best.pt",
+  "weights_sha256": "881b4781888078419c0612c47c48d311dcb184345db7b874af7fc0095f152e22",
+  "data": "/Users/LeoBenk/Documents/skku/Engineering Design/software/datasets/taco_yolo/dataset.yaml",
+  "metrics": {
+    "metrics/precision(B)": 0.29181031198226265,
+    "metrics/recall(B)": 0.09562089986384384,
+    "metrics/mAP50(B)": 0.04213445965394474,
+    "metrics/mAP50-95(B)": 0.029631817688894575,
+    "fitness": 0.029631817688894575
+  },
+  "note": "Public TACO evaluation only; not C920 or Korean sorting validation."
+}

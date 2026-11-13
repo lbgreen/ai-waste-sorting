@@ -1,0 +1,16 @@
+{
+  "candidate_threshold": 0.15,
+  "classification_threshold": 0.8,
+  "stable_frames": 6,
+  "stable_seconds": 1.0,
+  "max_gap_seconds": 2.0,
+  "empty_reset_seconds": 1.0,
+  "motion_threshold": 0.025,
+  "foreground_pixel_threshold": 35,
+  "min_region_fraction": 0.003,
+  "max_objects": 5,
+  "site_verified": false,
+  "rules": {},
+  "unsupported_labels": ["battery", "beverage_carton", "cell phone", "laptop", "keyboard", "mouse", "remote", "scissors"],
+  "non_waste_labels": ["person", "cat", "dog"]
+}
