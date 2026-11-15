@@ -5,7 +5,7 @@ Repository: [lbgreen/ai-waste-sorting](https://github.com/lbgreen/ai-waste-sorti
 
 ## Current live inspection — 15 November
 
-Started the C920 preview with `--camera 1 --weights weights/small_portions_yolo26n.pt --config config/small_portions_demo.json` at the owner's request. The application opened successfully and remains available for supervised inspection. No accuracy result, new training, capture collection or default-model change is claimed. Next: inspect single objects, save useful examples with `S`, then inspect separated two-/three-item scenes. Calibrate only the empty tray with `B`; exit with `Q`.
+Restarted the preview after correcting camera selection with `--camera 0 --weights weights/small_portions_yolo26n.pt --config config/small_portions_demo.json` at the owner's request. The application opened successfully and remains available for supervised inspection. No accuracy result, new training, capture collection or default-model change is claimed. Next: inspect single objects, save useful examples with `S`, then inspect separated two-/three-item scenes. Calibrate only the empty tray with `B`; exit with `Q`.
 
 ## Round 1 closeout
 
@@ -13,7 +13,7 @@ The first training round is closed as of **13 November 2026**. The [lecture anal
 
 ## Current state
 
-A supervised Python webcam prototype and two experimental waste-detector training runs exist. **There is no validated automatic sorting system yet.** Hardware target: MacBook Air M3 and Logitech C920. On 15 November, macOS and AVFoundation enumeration identified the connected C920 as index 1 (FaceTime index 0, iPhone index 2). The small-portion preview successfully opened it at a reported 1280×720 and 30 capture FPS. This is not measured end-to-end inference FPS or an accuracy validation; indices may change after reconnecting. No Arduino, serial output or servo control is implemented.
+A supervised Python webcam prototype and two experimental waste-detector training runs exist. **There is no validated automatic sorting system yet.** Hardware target: MacBook Air M3 and Logitech C920. On 15 November the initial unsorted AVFoundation list incorrectly suggested C920 index 1. The user confirmed this opened the built-in webcam. OpenCV sorts video/muxed devices by uniqueID: matching that ordering identifies C920 as index 0, FaceTime as index 1 and iPhone as index 2. The preview was restarted with index 0. Indices may change after reconnecting; capture FPS is not measured inference FPS. No Arduino, serial output or servo control is implemented.
 
 - `waste_sorter/__main__.py`: OpenCV preview, local YOLO integration, per-object boxes/name/confidence and status text, empty-tray calibration (`B`), image/metadata capture (`S`), quit (`Q`).
 - `waste_sorter/decision.py`: category decision and temporal gate, extra fresh recheck, event latch until the tray clears. Commands are console demo events.
@@ -93,3 +93,5 @@ Verify the camera index. Recognition overlays start immediately; clear the tray 
 ## Collaboration routine
 
 After meaningful changes, update this handoff, run appropriate checks, commit and push. Keep the repository public. These preferences are also recorded in [AGENTS.md](AGENTS.md). If a push fails, report the failure rather than claiming synchronization. Use Git history as the authoritative record of pushed revisions.
+
+Camera enumeration helper: `scripts/list_cameras_macos.m` matches OpenCV's uniqueID sorting. Compile with `clang -Wno-deprecated-declarations -framework Foundation -framework AVFoundation scripts/list_cameras_macos.m -o /tmp/waste_camera_list`, then run `/tmp/waste_camera_list`. Verified locally against the connected devices. Source ordering: https://github.com/opencv/opencv/blob/4.x/modules/videoio/src/cap_avfoundation_mac.mm .
