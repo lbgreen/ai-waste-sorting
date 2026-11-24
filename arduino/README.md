@@ -41,10 +41,29 @@ passender Motor samt Treiber kann die bessere mechanische Lösung sein.
 
 ## Sketch und UI starten
 
+Die VS-Code-Erweiterung **Arduino Community Edition**
+(`vscode-arduino.vscode-arduino-community`) ist für dieses Projekt
+vorbereitet: `.vscode/settings.json` aktiviert Arduino CLI und die lokale
+`.vscode/arduino.json` wählt den Sketch sowie **Arduino Uno R3**. Diese lokale
+Datei ist wegen des später gerätespezifischen seriellen Ports von Git
+ausgenommen. Auf einem neuen Rechner kann sie mit folgendem Inhalt
+wiederhergestellt werden:
+
+```json
+{
+  "sketch": "arduino/sorter_test/sorter_test.ino",
+  "board": "arduino:avr:uno"
+}
+```
+
 1. Arduino stromlos in die echte 0°-Stellung beider Klappen bringen. Flap 1
    wird beim Einschalten sofort bestromt; Flap 2 bei 0° nicht.
-2. `arduino/sorter_test/sorter_test.ino` in der Arduino IDE öffnen, korrektes
-   Board und Port wählen und hochladen.
+2. Uno R3 mit einem **USB-Datenkabel** verbinden. In VS Code dieses Repository
+   öffnen, `arduino/sorter_test/sorter_test.ino` öffnen und über
+   **Arduino: Select Serial Port** den neu angezeigten `/dev/cu.*`-Port
+   wählen. **Arduino: Verify** kompiliert, **Arduino: Upload** lädt den
+   Sketch hoch. Alternativ kann der Sketch in der Arduino IDE geöffnet
+   werden. Nicht versehentlich den Bluetooth- oder Debug-Port auswählen.
 3. Im Repository die UI-Abhängigkeit installieren und das Fenster starten:
 
    ```bash

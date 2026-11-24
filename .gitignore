@@ -2,6 +2,8 @@
 __pycache__/
 *.pyc
 .DS_Store
+/.vscode/arduino.json
+/.vscode/c_cpp_properties.json
 captures/
 runs/
 weights/
