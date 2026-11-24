@@ -3,6 +3,20 @@
 Updated: **24 November 2026** (Europe/Rome). Start here before continuing work.
 Repository: [lbgreen/ai-waste-sorting](https://github.com/lbgreen/ai-waste-sorting), **public** by the owner's latest instruction.
 
+## Control UI launch fix — 24 November
+
+The UI launch failed when the absolute script path was passed with literal
+double-quote characters *inside* a single-quoted shell argument. Python
+then looked for a filename beginning with `"`, which does not exist.
+The file itself and both `tkinter` and `pyserial` are present. Added
+`.vscode/tasks.json` with a process-type task, **Arduino: Steuerfenster
+starten**, which passes the Python executable and script path as separate
+arguments and sets the repository as working directory. The direct command
+remains `.venv/bin/python arduino/control_ui.py`. The task JSON parsed
+successfully; launching the UI with the same separate process arguments
+kept the window running for a one-second smoke check, after which it was
+closed. No Arduino hardware was connected during this launch fix.
+
 ## VS Code Arduino setup — 24 November
 
 Confirmed the owner uses an **Arduino Uno R3**. The Arduino Community Edition

@@ -71,6 +71,13 @@ wiederhergestellt werden:
    .venv/bin/python arduino/control_ui.py
    ```
 
+   In VS Code geht es auch ohne eigenen Terminalbefehl über
+   **Terminal → Run Task… → Arduino: Steuerfenster starten**. Diese
+   Projekt-Task übergibt Python und Skriptpfad getrennt und funktioniert
+   deshalb auch bei Leerzeichen im Projektpfad. Falls du den Befehl selbst
+   eingibst, keine zusätzlichen Anführungszeichen *innerhalb* des
+   Skriptarguments setzen.
+
    Ein Python mit Tk-Unterstützung ist nötig (`.venv/bin/python -m tkinter`
    prüft das). Beim Homebrew-Python 3.12 kann dafür
    `brew install python-tk@3.12` erforderlich sein. Den Arduino Serial
