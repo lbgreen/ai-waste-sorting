@@ -1,6 +1,8 @@
 # AI Waste Sorting — supervised camera prototype
 
-Python prototype for a MacBook Air M3 and Logitech C920. **No Arduino/servo control.**
+Python camera prototype for a MacBook Air M3 and Logitech C920. A separate
+[manual Arduino stepper test](arduino/README.md) provides a control window;
+camera decisions are not connected to the Arduino.
 
 **Team handoff:** read [DEVELOPMENT_STATUS.md](DEVELOPMENT_STATUS.md) for the current implementation, training results, local-only artifacts and next steps. The GitHub repository stays public; update the handoff and push verified changes after each meaningful work session.
 

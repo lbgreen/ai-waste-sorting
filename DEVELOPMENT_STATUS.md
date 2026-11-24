@@ -1,11 +1,42 @@
 # Development status and team handoff
 
-Updated: **15 November 2026** (Europe/Rome). Start here before continuing work.
+Updated: **24 November 2026** (Europe/Rome). Start here before continuing work.
 Repository: [lbgreen/ai-waste-sorting](https://github.com/lbgreen/ai-waste-sorting), **public** by the owner's latest instruction.
+
+## Manual Arduino hardware test — 24 November
+
+Added [wiring and operating instructions](arduino/README.md), a compilable
+Uno sketch at `arduino/sorter_test/sorter_test.ino`, a separate Tkinter/pyserial
+window at `arduino/control_ui.py`, and its isolated dependency file
+`arduino/requirements.txt`. The two existing `.ino` files in `arduino/`
+are preserved as original test snapshots. The new sketch keeps the previous
+`P/G/R` sorting sequences and `A/B/C/D` commands. It adds direct single-flap
+positions, step nudges, a serial stop command, home checks before sorting,
+and `POS` step-count reports about every 80 ms while moving. The UI requires
+confirmation of the physical 0° start before movement and shows calculated
+angles for both flaps, not sensor measurements. Flap 2 may use a
+second 28BYJ-48 with its own ULN2003 board on the same D4–D7 signals, with
+reversed IN order if opposite shaft rotation is required. This is a
+**manual bench test only**, not a camera/AI-to-actuator integration.
+
+Validation performed: `arduino-cli compile --fqbn arduino:avr:uno
+arduino/sorter_test` passed (5,198 bytes flash, 227 bytes global RAM);
+`arduino/control_ui.py` passed Python compilation, an offscreen UI
+construction smoke test, and protocol checks for READY/POS/BUSY/ERROR/DONE/
+STOPPED. All six existing decision tests still pass. No Arduino board appeared
+in `arduino-cli board list`, so no upload, motor motion, torque, real angle,
+stop response or dual-motor mechanical alignment has been tested.
+
+Next hardware steps: connect the actual board; confirm the motor/driver
+voltage and stable external supply; test each Flap-2 shaft with small nudges
+before coupling; verify both assist in the required direction and the flap
+does not bind; then verify home positions, all three sorting sequences,
+the stop command and position drift under the intended load. Do not use
+the displayed angle as proof of physical position after a stall or reset.
 
 ## Current live inspection — 15 November
 
-Restarted the preview after correcting camera selection with `--camera 0 --weights weights/small_portions_yolo26n.pt --config config/small_portions_demo.json` at the owner's request. The application opened successfully and remains available for supervised inspection. No accuracy result, new training, capture collection or default-model change is claimed. Next: inspect single objects, save useful examples with `S`, then inspect separated two-/three-item scenes. Calibrate only the empty tray with `B`; exit with `Q`.
+Restarted the preview after correcting camera selection with `--camera 0 --weights weights/small_portions_yolo26n.pt --config config/small_portions_demo.json` at the owner's request. The application opened successfully for supervised inspection. No accuracy result, new training, capture collection or default-model change is claimed. Next: inspect single objects, save useful examples with `S`, then inspect separated two-/three-item scenes. Calibrate only the empty tray with `B`; exit with `Q`.
 
 ## Round 1 closeout
 
@@ -13,7 +44,7 @@ The first training round is closed as of **13 November 2026**. The [lecture anal
 
 ## Current state
 
-A supervised Python webcam prototype and two experimental waste-detector training runs exist. **There is no validated automatic sorting system yet.** Hardware target: MacBook Air M3 and Logitech C920. On 15 November the initial unsorted AVFoundation list incorrectly suggested C920 index 1. The user confirmed this opened the built-in webcam. OpenCV sorts video/muxed devices by uniqueID: matching that ordering identifies C920 as index 0, FaceTime as index 1 and iPhone as index 2. The preview was restarted with index 0. Indices may change after reconnecting; capture FPS is not measured inference FPS. No Arduino, serial output or servo control is implemented.
+A supervised Python webcam prototype and two experimental waste-detector training runs exist. **There is no validated automatic sorting system yet.** Hardware target: MacBook Air M3 and Logitech C920. On 15 November the initial unsorted AVFoundation list incorrectly suggested C920 index 1. The user confirmed this opened the built-in webcam. OpenCV sorts video/muxed devices by uniqueID: matching that ordering identifies C920 as index 0, FaceTime as index 1 and iPhone as index 2. The preview was restarted with index 0. Indices may change after reconnecting; capture FPS is not measured inference FPS. The new manual Arduino test is separate from the webcam decision path; no automatic serial output or servo control is implemented.
 
 - `waste_sorter/__main__.py`: OpenCV preview, local YOLO integration, per-object boxes/name/confidence and status text, empty-tray calibration (`B`), image/metadata capture (`S`), quit (`Q`).
 - `waste_sorter/decision.py`: category decision and temporal gate, extra fresh recheck, event latch until the tray clears. Commands are console demo events.
@@ -84,11 +115,12 @@ Verify the camera index. Recognition overlays start immediately; clear the tray 
 
 ## Next work, in priority order
 
-1. **Verify the real setup.** Identify the C920 index, fix mounting/lighting and define the actual tray. Collect labelled, physically distinct 1-, 2- and 3-item scenes plus empty, hand-only, unknown and overlapping scenes. Record object/session IDs before splitting; do not label predictions as ground truth.
-2. **Fix evaluation coverage.** Add local validation examples for every target class, especially paper, cans, cups and containers. Keep a fresh local object/session pool untouched for final testing. Include all mixed-category pairs and same-category multi-item portions.
-3. **Improve recognition based on errors.** Inspect misses and per-class recall. Review the ten-class mapping against the actual whitelist; acquire additional suitable labelled public/local examples where coverage is weak. Keep all visible instances annotated and scene-combining augmentations disabled for small-portion experiments. Do not simply rerun the same weak experiment or repeatedly tune against the old public test.
-4. **Review Korean disposal rules with the team.** Confirm campus/building, collector and preparation conditions. Keep `site_verified: false` until this is resolved; no blanket bottle/plastic/paper-to-bin shortcuts.
-5. **Validate the integrated policy.** Measure complete-scene detection, false mixed-waste acceptance, unknown handling, empty-scene false detections, stable-frame behavior and latency on the C920. Only then consider a default-model change. Hardware actuation remains out of scope.
+1. **Bench-test the Arduino mechanism.** Follow `arduino/README.md`; test the second Flap-2 motor uncoupled, check supply voltage under load and verify the real home positions and sorting sequences. Add a reference sensor if measured angle is required.
+2. **Verify the real camera setup.** Confirm the C920 index, fix mounting/lighting and define the actual tray. Collect labelled, physically distinct 1-, 2- and 3-item scenes plus empty, hand-only, unknown and overlapping scenes. Record object/session IDs before splitting; do not label predictions as ground truth.
+3. **Fix evaluation coverage.** Add local validation examples for every target class, especially paper, cans, cups and containers. Keep a fresh local object/session pool untouched for final testing. Include all mixed-category pairs and same-category multi-item portions.
+4. **Improve recognition based on errors.** Inspect misses and per-class recall. Review the ten-class mapping against the actual whitelist; acquire additional suitable labelled public/local examples where coverage is weak. Keep all visible instances annotated and scene-combining augmentations disabled for small-portion experiments. Do not simply rerun the same weak experiment or repeatedly tune against the old public test.
+5. **Review Korean disposal rules with the team.** Confirm campus/building, collector and preparation conditions. Keep `site_verified: false` until this is resolved; no blanket bottle/plastic/paper-to-bin shortcuts.
+6. **Validate the integrated policy.** Measure complete-scene detection, false mixed-waste acceptance, unknown handling, empty-scene false detections, stable-frame behavior and latency on the C920. Only then consider a default-model change. Automatic hardware actuation remains out of scope.
 
 ## Collaboration routine
 
